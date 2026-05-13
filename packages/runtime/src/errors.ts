@@ -207,7 +207,15 @@ const SHARED_FALLBACK_PATTERNS: ReadonlyArray<{
   },
   {
     category: "permission",
-    patterns: ["permission denied", "write permission", "blocked by permissions"],
+    patterns: [
+      "permission denied",
+      "write permission",
+      "blocked by permissions",
+      "operation not permitted",
+      "readonly database",
+      "read-only database",
+      "attempt to write a readonly database",
+    ],
   },
   {
     category: "stream",

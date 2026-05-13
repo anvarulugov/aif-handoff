@@ -83,6 +83,16 @@ describe("codex error classification", () => {
     expect(classified.category).toBe("transport");
   });
 
+  it("classifies local Codex state sandbox failures as permission errors", () => {
+    const classified = classifyCodexRuntimeError(
+      new Error(
+        "failed to initialize state runtime at /Users/me/.codex: attempt to write a readonly database; failed to initialize in-process app-server client: Operation not permitted (os error 1)",
+      ),
+    );
+    expect(classified.adapterCode).toBe("CODEX_PERMISSION_DENIED");
+    expect(classified.category).toBe("permission");
+  });
+
   it("prefers structured app-server category when codexErrorInfo is provided", () => {
     const err = new Error("unauthorized") as Error & {
       codexErrorInfo: Record<string, unknown>;

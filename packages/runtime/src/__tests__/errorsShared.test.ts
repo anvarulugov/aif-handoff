@@ -64,6 +64,8 @@ describe("classifyByMessageFallback", () => {
     ["query_start_timeout", "timeout"],
     ["permission denied", "permission"],
     ["blocked by permissions", "permission"],
+    ["Operation not permitted (os error 1)", "permission"],
+    ["attempt to write a readonly database", "permission"],
     ["stream closed", "stream"],
     ["stream interrupted", "stream"],
     ["connection refused", "transport"],
